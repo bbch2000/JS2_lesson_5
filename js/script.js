@@ -20,9 +20,6 @@ let app = new Vue ({
         addProduct(product) {
             console.log(product.id_product);
         },
-        filterGoods(text) {
-            console.log(text);
-        }
     },
     mounted() {
         this.getJSON(`${API + this.catalogURL}`)
@@ -31,7 +28,14 @@ let app = new Vue ({
                 this.products.push (el)
             }
         })
-    }
+    },
+    computed: {
+        filterGoods() {
+          return this.products.filter(post => {
+            return post.product_name.toLowerCase().includes(this.searchText.toLowerCase());
+          })
+        }
+  }
 })
 
 

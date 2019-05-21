@@ -11,14 +11,14 @@
       <button id='basket' class="btn-cart" @click='isVisibleCart = !isVisibleCart'>Корзина</button>
        <div class='searchbox'>
             <input type="text" id="searchinput" v-model='searchText'>
-            <button id='search' @click='filterGoods(searchText)'></button>
+            <button id='search' @click='filterGoods'></button>
        </div>
       
     </header>
     
     <main>
         <div class="products">
-            <div class="product-item" v-for='product of products' :key='product.id_product'>
+            <div class="product-item" v-for='product of filterGoods' :key='product.id_product'>
                 <img :src='imgCatalog' alt="">
                 <h3>{{ product.product_name }}</h3>
                 <h4>{{ product.price }}</h4>
@@ -27,7 +27,7 @@
         </div>
         <div class="basket" :class='{invisible:!isVisibleCart}'>
             <div class="basket-item">
-                    <h3> name </h3>
+                    <h3> #name </h3>
                     <h4> Cтоимость:  </h4>
                     <h4> Количество: </h4>
                     <button class='remove'>удалить</button>
